@@ -9,6 +9,9 @@ cons = require 'consolidate'
 
 app = express()
 
+# Middleware
+app.use express.static('public')
+
 # Set up view rendering.
 do ->
 # Find all partials.
