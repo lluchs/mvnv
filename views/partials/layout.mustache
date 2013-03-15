@@ -3,16 +3,30 @@
 	<head>
 		<title>MVNV</title>
 		<meta charset="utf-8">
+
+		<link rel="stylesheet" href="/bootstrap/css/bootstrap.css" type="text/css" media="screen" charset="utf-8">
+		<link rel="stylesheet" href="/css/mvnv.css" type="text/css" media="screen" charset="utf-8">
 	</head>
 	<body>
-		<nav>
-			<a href="/">MVNV</a>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="/">MVNV</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li><a href="/new">Neu</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</nav>
-		<section>
+		<section class="container">
 			{{$content}}Main content.{{/content}}
 		</section>
 		<footer>
-			Musikverein Notenverwaltung, 2013
+			<div class="container">
+				Musikverein Notenverwaltung, 2013
+			</div>
 		</footer>
 	</body>
 </html>
