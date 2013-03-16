@@ -3,6 +3,9 @@
 mongoose = require 'mongoose'
 
 schema = new mongoose.Schema
+  id:
+    type: Number
+    index: true
   title: 
     type: String
     required: true

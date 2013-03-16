@@ -20,7 +20,8 @@ module.exports = (app) ->
 
   # Edit a score.
   app.put '/scores', (req, res) ->
-    Score.update {_id: req.body._id},
+    id = req.body._id
+    Score.update {_id: id},
       _.pick(req.body, attrs),
       (err) ->
         req.session.messages = if err
@@ -28,8 +29,8 @@ module.exports = (app) ->
           msg: err.message
         else
           type: 'success'
-          msg: 'Notensatz aktualsiert!'
-        res.redirect '/new'
+          msg: 'Notensatz aktualisiert!'
+        res.redirect "/scores/#{id}"
 
   # List scores.
   app.get '/scores', (req, res) ->
