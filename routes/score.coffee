@@ -20,3 +20,6 @@ module.exports = (app) ->
     Score.find (err, scores) ->
       res.render 'scores',
         scores: scores
+        messages: if err
+          type: 'error'
+          msg: err
