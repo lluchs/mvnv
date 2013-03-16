@@ -40,13 +40,25 @@ module.exports = (app) ->
           type: 'error'
           msg: err
 
-  app.get '/scores/:id/edit', (req, res) ->
+  # Middleware for getting the given score.
+  loadScore = (req, res, next) ->
     # Try to find the score.
     Score.findById req.params.id, (err, score) ->
       if err
         res.send 404, 'Score not found'
       else
-        score.method = 'PUT'
-        res.render 'edit',
-          score: score
+        res.locals.score = score
+        next()
+
+  # Show a single score.
+  app.get '/scores/:id', loadScore, (req, res) ->
+    score = res.locals.score
+    res.render 'score', score
+
+  # Edit a score.
+  app.get '/scores/:id/edit', loadScore, (req, res) ->
+    score = res.locals.score
+    score.method = 'PUT'
+    res.render 'edit',
+      score: score
 
