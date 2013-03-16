@@ -7,6 +7,8 @@ _ = require 'underscore'
 express = require 'express'
 cons = require 'consolidate'
 
+db = require './db'
+
 app = express()
 
 # Middleware
@@ -31,7 +33,8 @@ do ->
 # Set up routes.
 require('./routes')(app)
 
-# Start the application!
-PORT = 3257
-app.listen PORT
-console.log "Server listening on #{PORT}."
+# Start the application once the database connection is established!
+db.once 'open', ->
+  PORT = 3257
+  app.listen PORT
+  console.log "Server listening on #{PORT}."

@@ -12,6 +12,8 @@
     "express": "~3.1.0",
     "consolidate": "~0.8.0",
     "hogan.js": "git://github.com/twitter/hogan.js.git",
-    "underscore": "~1.4.4"
+    "underscore": "~1.4.4",
+    "mongoose": "~3.5.9",
+    "convict": "~0.1.0"
   }
 }
