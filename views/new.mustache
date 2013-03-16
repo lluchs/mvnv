@@ -4,22 +4,6 @@
 		<h1>Neu</h1>
 		
 		{{>messages}}
-		<form method="POST" action="/scores">
-			<fieldset>
-				<legend>Notensatz</legend>
-				<label>Titel</label>
-				<input name=title required autofocus type=text placeholder="Die Rheinreise">
-				<label>Komponist</label>
-				<input name=composer required type=text placeholder="Thorsten Wollmann">
-				<label>Jahr</label>
-				<input name=year type=number min=1000 placeholder=2011 max=3000>
-				<label>Verlag</label>
-				<input name=publisher type=text placeholder="RUNDEL Publications">
-
-				<div class="form-actions">
-					<button type="submit" class="btn">Speichern</button>
-				</div>
-			</fieldset>
-		</form>
+		{{>score_form}}
 	{{/content}}
 {{/layout}}

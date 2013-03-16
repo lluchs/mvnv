@@ -1,0 +1,19 @@
+{{! Form for creating or editing scores. }}
+
+<form method="{{method}}" action="/scores">
+	<fieldset>
+		<legend>Notensatz</legend>
+		<label>Titel</label>
+		<input name=title required autofocus type=text placeholder="Die Rheinreise" value="{{title}}">
+		<label>Komponist</label>
+		<input name=composer required type=text placeholder="Thorsten Wollmann" value="{{composer}}">
+		<label>Jahr</label>
+		<input name=year type=number min=1000 placeholder=2011 max=3000 value="{{year}}">
+		<label>Verlag</label>
+		<input name=publisher type=text placeholder="RUNDEL Publications" value="{{publisher}}">
+
+		<div class="form-actions">
+			<button type="submit" class="btn">Speichern</button>
+		</div>
+	</fieldset>
+</form>
