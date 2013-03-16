@@ -6,14 +6,20 @@ path = require 'path'
 _ = require 'underscore'
 express = require 'express'
 cons = require 'consolidate'
+MongoStore = require 'connect-mongodb'
 
-db = require './db'
+cfg = require './cfg'
+connection = require './db'
 
 app = express()
 
 # Middleware
 app.use express.static('public')
 app.use express.bodyParser()
+app.use express.cookieParser()
+app.use express.session
+  secret: cfg.get('session.secret')
+  store: new MongoStore(url: cfg.get('mongo.url'))
 
 # Set up view rendering.
 do ->
@@ -35,7 +41,7 @@ do ->
 require('./routes')(app)
 
 # Start the application once the database connection is established!
-db.once 'open', ->
+connection.once 'open', ->
   PORT = 3257
   app.listen PORT
   console.log "Server listening on #{PORT}."

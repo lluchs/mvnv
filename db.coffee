@@ -6,10 +6,10 @@ cfg = require './cfg'
 
 mongoose.connect cfg.get('mongo.url')
 
-db = mongoose.connection
-db.on 'error', (err) -> console.error 'Connection error: '+err
+conn = mongoose.connection
+conn.on 'error', (err) -> console.error 'Connection error: '+err
 
-db.once 'open',  ->
+conn.once 'open',  ->
   console.info 'MongoDB connection created.'
 
-module.exports = db
+module.exports = conn
