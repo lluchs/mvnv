@@ -58,8 +58,11 @@ module.exports = (app) ->
   loadScore = (req, res, next) ->
     # Try to find the score.
     Score.findById req.params.id, (err, score) ->
-      if err
-        res.send 404, 'Score not found'
+      if err or not score?
+        res.status(404).render 'error',
+          messages:
+            type: 'error'
+            msg: 'Notensatz nicht gefunden'
       else
         res.locals.score = score
         next()
