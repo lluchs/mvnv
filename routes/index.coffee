@@ -5,3 +5,6 @@ module.exports = (app) ->
 
   app.get '/new', (req, res) ->
     res.render 'new'
+
+  # Include subroutes
+  require('./score')(app)

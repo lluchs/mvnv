@@ -13,6 +13,7 @@ app = express()
 
 # Middleware
 app.use express.static('public')
+app.use express.bodyParser()
 
 # Set up view rendering.
 do ->
