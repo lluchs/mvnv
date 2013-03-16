@@ -15,6 +15,7 @@ app = express()
 
 # Middleware
 app.use express.static('public')
+app.use express.logger('dev')
 app.use express.bodyParser()
 app.use express.methodOverride()
 app.use express.cookieParser()
