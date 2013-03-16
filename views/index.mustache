@@ -2,5 +2,13 @@
 {{<layout}}
 	{{$content}}
 		<h1>MVNV</h1>
+
+		{{>messages}}
+
+		<form action="/scores/by/id" class="input-append">
+			<label>Gehe zum Satz mit der ID:</label>
+			<input name=id type=number class="span2" value="{{id}}">
+			<button class="btn" type="submit">Los!</button>
+		</form>
 	{{/content}}
 {{/layout}}

@@ -41,6 +41,19 @@ module.exports = (app) ->
           type: 'error'
           msg: err
 
+  # Go to the score identified by this id.
+  app.get '/scores/by/id', (req, res) ->
+    id = req.query.id
+    Score.findOne {id}, (err, score) ->
+      if err or not score?
+        res.status(404).render 'index',
+          id: id
+          messages:
+            type: 'error'
+            msg: err?.message or 'Notensatz nicht gefunden.'
+      else
+        res.redirect "/scores/#{score._id}"
+
   # Middleware for getting the given score.
   loadScore = (req, res, next) ->
     # Try to find the score.
