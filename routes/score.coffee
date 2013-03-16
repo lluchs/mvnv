@@ -54,6 +54,28 @@ module.exports = (app) ->
       else
         res.redirect "/scores/#{score._id}"
 
+  # Search for scores.
+  app.get '/scores/search', (req, res) ->
+    query = (''+req.query.q).split /\s+/
+    # Remove all ASCII symbols (special meaning in regexes)
+    query = (s.replace(/[\x00-\x2F,\x3A-\x40,\x5B-\x60,\x7B-\x80]+/g, '') for s in query)
+    regex = new RegExp query.join('|'), 'i'
+    # Search for all scores containing any of the given words.
+    Score.find {$or: [{title: regex}, {composer: regex}, {publisher: regex}]}, (err, scores) ->
+      if err or scores.length is 0
+        res.render 'index',
+          search: req.query.q
+          messages:
+            type: 'info'
+            msg: 'Nichts gefunden.'
+      else
+        res.render 'scores',
+          search: req.query.q
+          scores: scores
+          messages:
+            type: 'info'
+            msg: "#{scores.length} Resultat#{if scores.length isnt 1 then 'e' else ''}:"
+
   # Middleware for getting the given score.
   loadScore = (req, res, next) ->
     # Try to find the score.
