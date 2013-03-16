@@ -9,3 +9,9 @@ module.exports = (app) ->
     score.save (err) ->
       ep = if err then "?err=#{err}" else ''
       res.redirect '/new'+ep
+
+  # List scores.
+  app.get '/scores', (req, res) ->
+    Score.find (err, scores) ->
+      res.render 'scores',
+        scores: scores

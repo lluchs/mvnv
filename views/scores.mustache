@@ -1,0 +1,12 @@
+{{! Lists scores. }}
+{{<layout}}
+	{{$content}}
+		<h1>Noten</h1>
+
+		<ul class="scores">
+			{{#scores}}
+				<li><b>{{title}}</b> von {{composer}}</li>
+			{{/scores}}
+		</ul>
+	{{/content}}
+{{/layout}}
