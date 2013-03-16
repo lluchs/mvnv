@@ -7,8 +7,13 @@ module.exports = (app) ->
   app.post '/scores', (req, res) ->
     score = new Score(req.body)
     score.save (err) ->
-      ep = if err then "?err=#{err}" else ''
-      res.redirect '/new'+ep
+      req.session.messages = if err
+        type: 'error'
+        msg: err
+      else
+        type: 'success'
+        msg: 'Notensatz eingetragen!'
+      res.redirect '/new'
 
   # List scores.
   app.get '/scores', (req, res) ->
