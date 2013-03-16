@@ -1,0 +1,11 @@
+{{! Form for editing a score }}
+{{<layout}}
+	{{$content}}
+		<h1>Notensatz bearbeiten</h1>
+		
+		{{>messages}}
+		{{#score}}
+			{{>score_form}}
+		{{/score}}
+	{{/content}}
+{{/layout}}

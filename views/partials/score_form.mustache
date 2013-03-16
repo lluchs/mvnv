@@ -1,6 +1,7 @@
 {{! Form for creating or editing scores. }}
 
-<form method="{{method}}" action="/scores">
+<form method="POST" action="/scores">
+	<input name="_method" type=hidden value="{{method}}">
 	<fieldset>
 		<legend>Notensatz</legend>
 		<label>Titel</label>
@@ -12,6 +13,10 @@
 		<label>Verlag</label>
 		<input name=publisher type=text placeholder="RUNDEL Publications" value="{{publisher}}">
 
+		{{! Identification for editing }}
+		{{#_id}}
+			<input name="_id" type=hidden value="{{_id}}">
+		{{/_id}}
 		<div class="form-actions">
 			<button type="submit" class="btn">Speichern</button>
 		</div>

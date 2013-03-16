@@ -16,6 +16,7 @@ app = express()
 # Middleware
 app.use express.static('public')
 app.use express.bodyParser()
+app.use express.methodOverride()
 app.use express.cookieParser()
 app.use express.session
   secret: cfg.get('session.secret')
