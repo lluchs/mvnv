@@ -22,9 +22,10 @@ module.exports = (app) ->
   # Edit a score.
   app.put '/scores', (req, res) ->
     id = req.body._id
-    Score.update {_id: id},
-      _.pick(req.body, attrs),
-      (err) ->
+    Score.findOne {_id: id}, (err, score) ->
+      for a in attrs
+        score[a] = req.body[a]
+      score.save (err) ->
         req.session.messages = if err
           type: 'error'
           msg: err.message
