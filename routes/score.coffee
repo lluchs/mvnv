@@ -94,7 +94,10 @@ module.exports = (app) ->
   # Show a single score.
   app.get '/scores/:id', loadScore, (req, res) ->
     score = res.locals.score
-    res.render 'score', score
+    res.render 'score',
+      score: score
+      messages: req.session.messages
+    delete req.session.messages
 
   # Edit a score.
   app.get '/scores/:id/edit', loadScore, (req, res) ->
