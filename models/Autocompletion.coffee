@@ -17,15 +17,7 @@ getCacheField = (Model, field) -> "#{Model.modelName}|#{field}"
 
 # Builds the autocompletion cache for the given model/field.
 schema.statics.buildCache = (Model, field) ->
-  # Do an aggregation!
-  aggregation =
-    $project: {_id: 0}
-    $group:
-      _id: 'autocompletion'
-      completions:
-        $addToSet: "$#{field}"
-  aggregation.$project[field] = 1
-  Model.aggregate aggregation, (err, result) =>
+  Model.distinct field, {}, (err, result) =>
     return if err
     af = getCacheField(Model, field)
     # Insert into collection.
@@ -33,7 +25,7 @@ schema.statics.buildCache = (Model, field) ->
       field: af
     ,
       field: af
-      completions: result[0].completions
+      completions: result
     ,
       upsert: true
     # Empty function: Execute, but we don't care about errors.
