@@ -2,6 +2,7 @@
 
 _ = require 'underscore'
 
+Autocompletion = require '../models/Autocompletion'
 Score = require '../models/Score'
 attrs = require('../models/attributes').score
 
@@ -96,8 +97,10 @@ module.exports = (app) ->
 
   # Edit a score.
   app.get '/scores/:id/edit', loadScore, (req, res) ->
-    score = res.locals.score
-    score.method = 'PUT'
-    res.render 'edit',
-      score: score
+    Autocompletion.getCompletions Score, 'publisher', (err, cmpl) ->
+      score = res.locals.score
+      score.method = 'PUT'
+      res.render 'edit',
+        score: score
+        publishers: cmpl
 
