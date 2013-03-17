@@ -61,9 +61,14 @@ module.exports = (app) ->
     query = (''+req.query.q).split /\s+/
     # Remove all ASCII symbols (special meaning in regexes)
     query = (s.replace(/[\x00-\x2F,\x3A-\x40,\x5B-\x60,\x7B-\x80]+/g, '') for s in query)
-    regex = new RegExp query.join('|'), 'i'
-    # Search for all scores containing any of the given words.
-    Score.find {$or: [{title: regex}, {composer: regex}, {publisher: regex}]}, (err, scores) ->
+
+    # Search for all scores containing all of the given words.
+    search = Score.find()
+    for q in query
+      regex = new RegExp q, 'i'
+      search.find {$or: [{title: regex}, {composer: regex}, {publisher: regex}]}
+
+    search.exec (err, scores) ->
       if err or scores.length is 0
         res.render 'index',
           search: req.query.q
