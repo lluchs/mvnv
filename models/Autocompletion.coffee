@@ -1,6 +1,8 @@
 # Universal Autocompletion Cache
 
 mongoose = require 'mongoose'
+_ = require 'underscore'
+async = require 'async'
 
 schema = new mongoose.Schema
   # The 'model'-'field' to autocomplete.
@@ -32,14 +34,22 @@ schema.statics.buildCache = (Model, field) ->
     , ->
 
 # Get the autocompletion cache for the given model/field.
+#
+# Multiple fields may be defined.
 schema.statics.getCompletions = (Model, field, fn) ->
+  if _.isArray(field)
+    async.map field, (=> @getCompletion Model, arguments...), fn
+  else
+    @getCompletion arguments...
+
+# Implementation
+schema.statics.getCompletion = (Model, field, fn) ->
   @findOne {field: getCacheField(Model, field)}, (err, cmpl) ->
     if err
       fn(err)
     else
-      fn(null, cmpl.completions)
+      fn(null, cmpl?.completions or [])
   return
-
 
 module.exports = Autocompletion = mongoose.model('Autocompletion', schema)
   

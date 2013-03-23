@@ -8,11 +8,12 @@ module.exports = (app) ->
     res.render 'index'
 
   app.get '/new', (req, res) ->
-    Autocompletion.getCompletions Score, 'publisher', (err, cmpl) ->
+    Autocompletion.getCompletions Score, ['publisher', 'tags'], (err, cmpl) ->
       res.render 'new',
         messages: req.session.messages
         method: 'POST'
-        publishers: cmpl
+        publishers: cmpl[0]
+        taglist: cmpl[1]
       delete req.session.messages
 
   # Include subroutes

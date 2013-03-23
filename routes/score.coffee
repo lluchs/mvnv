@@ -10,6 +10,7 @@ module.exports = (app) ->
   # Create a new score.
   app.post '/scores', (req, res) ->
     score = new Score(_.pick req.body, attrs)
+    score.setTags req.body.tags
     score.save (err) ->
       req.session.messages = if err
         type: 'error'
@@ -25,6 +26,7 @@ module.exports = (app) ->
     Score.findOne {_id: id}, (err, score) ->
       for a in attrs
         score[a] = req.body[a]
+      score.setTags req.body.tags
       score.save (err) ->
         req.session.messages = if err
           type: 'error'
@@ -106,10 +108,11 @@ module.exports = (app) ->
 
   # Edit a score.
   app.get '/scores/:id/edit', loadScore, (req, res) ->
-    Autocompletion.getCompletions Score, 'publisher', (err, cmpl) ->
+    Autocompletion.getCompletions Score, ['publisher', 'tags'], (err, cmpl) ->
       score = res.locals.score
       score.method = 'PUT'
       res.render 'edit',
         score: score
-        publishers: cmpl
+        publishers: cmpl[0]
+        taglist: cmpl[1]
 
