@@ -5,6 +5,12 @@
 
 		{{>messages}}
 
+		<nav class=tags>
+			{{#tags}}
+				<a class="label {{#selected}}label-important{{/selected}}" href="{{url}}">{{tag}}</a>
+			{{/tags}}
+		</nav>
+
 		<ul class="scores">
 			{{#scores}}
 				<li><a href="/scores/{{_id}}"><b>{{title}}</b> von {{composer}}</a></li>

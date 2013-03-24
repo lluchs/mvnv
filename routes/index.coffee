@@ -5,7 +5,10 @@ Score = require '../models/Score'
 
 module.exports = (app) ->
   app.get '/', (req, res) ->
-    res.render 'index'
+    # Load tags for tag list.
+    Autocompletion.getCompletions Score, 'tags', (err, cmpl) ->
+      res.render 'index',
+        tags: cmpl
 
   app.get '/new', (req, res) ->
     Autocompletion.getCompletions Score, ['publisher', 'tags'], (err, cmpl) ->

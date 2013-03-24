@@ -58,6 +58,34 @@ module.exports = (app) ->
       else
         res.redirect "/scores/#{score._id}"
 
+  # List scores by tag.
+  app.get '/scores/by/tags/:tags', (req, res) ->
+    tagsel = req.params.tags.split /,/
+    Score.find {tags: {$all: tagsel}}, (err, scores) ->
+      # Find all tags in the given set.
+      tags = {}
+      for score in scores
+        tags[tag] = true for tag in score.tags
+      # Convert to an array.
+      tags = Object.keys(tags).map (tag) ->
+        selected = tag in tagsel
+        newSel = if selected
+          _.without tagsel, tag
+        else
+          _.union tagsel, [tag]
+        url = if newSel.length
+          '/scores/by/tags/' + newSel.join ','
+        else
+          '/'
+        {tag, url, selected}
+
+      res.render 'scores',
+        tags: tags
+        scores: scores
+        messages: if err
+          type: 'error'
+          msg: err
+
   # Search for scores.
   app.get '/scores/search', (req, res) ->
     query = (''+req.query.q).split /\s+/
