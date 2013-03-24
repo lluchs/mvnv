@@ -10,6 +10,7 @@ module.exports = (app) ->
   # Create a new score.
   app.post '/scores', (req, res) ->
     score = new Score(_.pick req.body, attrs)
+    score.setTags req.body.tags
     score.save (err) ->
       req.session.messages = if err
         type: 'error'
@@ -25,6 +26,7 @@ module.exports = (app) ->
     Score.findOne {_id: id}, (err, score) ->
       for a in attrs
         score[a] = req.body[a]
+      score.setTags req.body.tags
       score.save (err) ->
         req.session.messages = if err
           type: 'error'
@@ -55,6 +57,34 @@ module.exports = (app) ->
             msg: err?.message or 'Notensatz nicht gefunden.'
       else
         res.redirect "/scores/#{score._id}"
+
+  # List scores by tag.
+  app.get '/scores/by/tags/:tags', (req, res) ->
+    tagsel = req.params.tags.split /,/
+    Score.find {tags: {$all: tagsel}}, (err, scores) ->
+      # Find all tags in the given set.
+      tags = {}
+      for score in scores
+        tags[tag] = true for tag in score.tags
+      # Convert to an array.
+      tags = Object.keys(tags).map (tag) ->
+        selected = tag in tagsel
+        newSel = if selected
+          _.without tagsel, tag
+        else
+          _.union tagsel, [tag]
+        url = if newSel.length
+          '/scores/by/tags/' + newSel.join ','
+        else
+          '/'
+        {tag, url, selected}
+
+      res.render 'scores',
+        tags: tags
+        scores: scores
+        messages: if err
+          type: 'error'
+          msg: err
 
   # Search for scores.
   app.get '/scores/search', (req, res) ->
@@ -106,10 +136,11 @@ module.exports = (app) ->
 
   # Edit a score.
   app.get '/scores/:id/edit', loadScore, (req, res) ->
-    Autocompletion.getCompletions Score, 'publisher', (err, cmpl) ->
+    Autocompletion.getCompletions Score, ['publisher', 'tags'], (err, cmpl) ->
       score = res.locals.score
       score.method = 'PUT'
       res.render 'edit',
         score: score
-        publishers: cmpl
+        publishers: cmpl[0]
+        taglist: cmpl[1]
 

@@ -5,14 +5,18 @@ Score = require '../models/Score'
 
 module.exports = (app) ->
   app.get '/', (req, res) ->
-    res.render 'index'
+    # Load tags for tag list.
+    Autocompletion.getCompletions Score, 'tags', (err, cmpl) ->
+      res.render 'index',
+        tags: cmpl
 
   app.get '/new', (req, res) ->
-    Autocompletion.getCompletions Score, 'publisher', (err, cmpl) ->
+    Autocompletion.getCompletions Score, ['publisher', 'tags'], (err, cmpl) ->
       res.render 'new',
         messages: req.session.messages
         method: 'POST'
-        publishers: cmpl
+        publishers: cmpl[0]
+        taglist: cmpl[1]
       delete req.session.messages
 
   # Include subroutes

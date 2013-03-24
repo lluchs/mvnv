@@ -15,12 +15,19 @@
 		<input name=year type=number min=1000 placeholder=2011 max=3000 value="{{year}}">
 		<label>Verlag</label>
 		<input name=publisher type=text list=publishers placeholder="RUNDEL Publications" value="{{publisher}}">
+		<label>Tags <small>(Trennung mit Kommas)</small></label>
+		<input name=tags type=text class="tags-input" list=tags placeholder="Muttertag 2013, Konzert" value="{{getTags}}">
 
-		{{! publisher autocompletion }}
+		{{! autocompletion }}
 		<datalist id=publishers>
 			{{#publishers}}
 				<option value="{{.}}">
 			{{/publishers}}
+		</datalist>
+		<datalist id=tags>
+			{{#taglist}}
+				<option value="{{.}}">
+			{{/taglist}}
 		</datalist>
 
 		{{! Identification for editing }}
