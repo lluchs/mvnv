@@ -14,7 +14,6 @@ schema = new mongoose.Schema
   title: 
     type: String
     required: true
-    index: true
   composer: 
     type: String
     required: true
