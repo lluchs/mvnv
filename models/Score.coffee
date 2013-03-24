@@ -8,7 +8,9 @@ Autocompletion = require './Autocompletion'
 schema = new mongoose.Schema
   id:
     type: Number
-    index: true
+    index:
+      sparse: true
+      unique: true
   title: 
     type: String
     required: true
