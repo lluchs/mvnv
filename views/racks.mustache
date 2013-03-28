@@ -1,0 +1,15 @@
+{{! Lists racks. }}
+{{<layout}}
+	{{$content}}
+		<h1>Notenschränke</h1>
+
+		{{>messages}}
+
+		<ul class="racks">
+			{{#racks}}
+				<li><a href="/racks/{{_id}}">{{name}}</a></li>
+			{{/racks}}
+		</ul>
+	{{/content}}
+{{/layout}}
+

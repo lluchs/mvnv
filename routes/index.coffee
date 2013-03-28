@@ -21,3 +21,4 @@ module.exports = (app) ->
 
   # Include subroutes
   require('./score')(app)
+  require('./rack')(app)

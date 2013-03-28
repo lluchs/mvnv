@@ -1,0 +1,12 @@
+{{! Form for editing a rack }}
+{{<layout}}
+	{{$content}}
+		<h1>Notenschrank bearbeiten</h1>
+		
+		{{>messages}}
+		{{#rack}}
+			{{>rack_form}}
+		{{/rack}}
+	{{/content}}
+{{/layout}}
+
