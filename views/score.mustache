@@ -9,7 +9,15 @@
 			<h2>{{title}}</h2>
 			<dl class="dl-horizontal">
 				<dt>ID</dt>
-				<dd>{{id}}{{^id}}<i class=muted>?</i>{{/id}}</dd>
+				<dd>
+					{{id}}
+					{{#rack}}
+						<a href="/racks/{{_id}}">
+							({{name}})
+						</a>
+					{{/rack}}
+					{{^id}}<i class=muted>?</i>{{/id}}
+				</dd>
 				<dt>Komponist</dt>
 				<dd>{{composer}}</dd>
 				<dt>Jahr</dt>

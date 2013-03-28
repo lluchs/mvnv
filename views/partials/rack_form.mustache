@@ -1,0 +1,21 @@
+{{! Form for creating or editing racks. }}
+
+<form method="POST" action="/racks">
+	<input name="_method" type=hidden value="{{method}}">
+	<fieldset>
+		<legend>Notenschrank</legend>
+
+		<label>Name</label>
+		<input autofocus required name=name type=text value="{{name}}" placeholder="Schrank 42">
+		<label>Inhalt <small>Liste von Noten-ID-Bereichen (Inklusiv)</small></label>
+		<input name=contents required type=text placeholder="1-42, 200-3050, 122-123" value="{{getContents}}">
+
+		{{! Identification for editing }}
+		{{#_id}}
+			<input name="_id" type=hidden value="{{_id}}">
+		{{/_id}}
+		<div class="form-actions">
+			<button type="submit" class="btn">Speichern</button>
+		</div>
+	</fieldset>
+</form>

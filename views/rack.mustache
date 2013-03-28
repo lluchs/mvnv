@@ -1,0 +1,23 @@
+{{! Shows a single rack. }}
+{{<layout}}
+	{{$content}}
+		<h1>Notenschrank</h1>
+
+		{{>messages}}
+
+		{{#rack}}
+			<h2>{{name}}</h2>
+			<h3>Inhalt</h3>
+			<ul>
+				{{#contents}}
+					<li>{{min}}-{{max}}</li>
+				{{/contents}}
+			</ul>
+
+			<a class="btn" href="/racks/{{_id}}/edit"><i class=icon-edit></i> Bearbeiten</a>
+		{{/rack}}
+
+		<h3>Notensätze</h3>
+		{{>score_list}}
+	{{/content}}
+{{/layout}}
