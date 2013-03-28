@@ -27,7 +27,7 @@ schema.statics.buildCache = (Model, field) ->
       field: af
     ,
       field: af
-      completions: result
+      completions: _.compact result
     ,
       upsert: true
     # Empty function: Execute, but we don't care about errors.
