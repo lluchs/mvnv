@@ -30,4 +30,11 @@ schema.methods.getContents = ->
   ranges = ("#{range.min}-#{range.max}" for range in @contents)
   ranges.join ', '
 
+# Finds a single rack by score id.
+schema.statics.findByScoreId = (id, callback) ->
+  Rack.findOne()
+    .where('contents.min').lte(id)
+    .where('contents.max').gte(id)
+    .exec callback
+
 module.exports = Rack = mongoose.model 'Rack', schema

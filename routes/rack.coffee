@@ -58,6 +58,18 @@ module.exports = (app) ->
       method: 'POST'
     delete req.session.messages
 
+  # Find a rack by score id.
+  app.get '/racks/by/score/:id', (req, res) ->
+    id = +req.params.id
+    Rack.findByScoreId id, (err, rack) ->
+      if rack
+        res.redirect "/racks/#{rack._id}"
+      else
+        res.status(404).render 'error',
+          messages:
+            type: 'error'
+            msg: 'Notenschrank nicht gefunden'
+
   # Middleware for getting the given rack.
   loadRack = (req, res, next) ->
     # Try to find the rack.
