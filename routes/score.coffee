@@ -4,6 +4,7 @@ _ = require 'underscore'
 
 Autocompletion = require '../models/Autocompletion'
 Score = require '../models/Score'
+Rack = require '../models/Rack'
 attrs = require('../models/attributes').score
 
 module.exports = (app) ->
@@ -129,10 +130,18 @@ module.exports = (app) ->
   # Show a single score.
   app.get '/scores/:id', loadScore, (req, res) ->
     score = res.locals.score
-    res.render 'score',
-      score: score
-      messages: req.session.messages
-    delete req.session.messages
+    render = (rack) ->
+      score.rack = rack
+      res.render 'score',
+        score: score
+        messages: req.session.messages
+      delete req.session.messages
+    # Find the corresponding rack.
+    if score.id
+      Rack.findByScoreId score.id, (err, rack) ->
+        render(rack)
+    else
+      render()
 
   # Edit a score.
   app.get '/scores/:id/edit', loadScore, (req, res) ->

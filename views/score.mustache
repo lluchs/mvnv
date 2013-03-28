@@ -10,7 +10,12 @@
 			<dl class="dl-horizontal">
 				<dt>ID</dt>
 				<dd>
-					<a href="/racks/by/score/{{id}}">{{id}}</a>
+					{{id}}
+					{{#rack}}
+						<a href="/racks/{{_id}}">
+							({{name}})
+						</a>
+					{{/rack}}
 					{{^id}}<i class=muted>?</i>{{/id}}
 				</dd>
 				<dt>Komponist</dt>
