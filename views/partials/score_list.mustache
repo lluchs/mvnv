@@ -1,0 +1,6 @@
+{{! Lists scores in a compact unordered list. }}
+<ul class="scores">
+	{{#scores}}
+		<li><a href="/scores/{{_id}}"><b>{{title}}</b> von {{composer}}</a></li>
+	{{/scores}}
+</ul>
