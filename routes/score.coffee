@@ -6,6 +6,7 @@ Autocompletion = require '../models/Autocompletion'
 Score = require '../models/Score'
 Rack = require '../models/Rack'
 attrs = require('../models/attributes').score
+msg = require '../helpers/messages'
 
 module.exports = (app) ->
   # Create a new score.
@@ -14,11 +15,9 @@ module.exports = (app) ->
     score.setTags req.body.tags
     score.save (err) ->
       req.session.messages = if err
-        type: 'error'
-        msg: err.message
+        msg.err(err)
       else
-        type: 'success'
-        msg: 'Notensatz eingetragen!'
+        msg.success 'Notensatz eingetragen!'
       res.redirect '/new'
 
   # Edit a score.
@@ -30,11 +29,9 @@ module.exports = (app) ->
       score.setTags req.body.tags
       score.save (err) ->
         req.session.messages = if err
-          type: 'error'
-          msg: err.message
+          msg.err(err)
         else
-          type: 'success'
-          msg: 'Notensatz aktualisiert!'
+          msg.success 'Notensatz aktualisiert!'
         res.redirect "/scores/#{id}"
 
   # List scores.
@@ -42,9 +39,7 @@ module.exports = (app) ->
     Score.find (err, scores) ->
       res.render 'scores',
         scores: scores
-        messages: if err
-          type: 'error'
-          msg: err
+        messages: msg.err(err)
 
   # Go to the score identified by this id.
   app.get '/scores/by/id', (req, res) ->
@@ -83,9 +78,7 @@ module.exports = (app) ->
       res.render 'scores',
         tags: tags
         scores: scores
-        messages: if err
-          type: 'error'
-          msg: err
+        messages: msg.err(err)
 
   # Search for scores.
   app.get '/scores/search', (req, res) ->
@@ -147,11 +140,9 @@ module.exports = (app) ->
   app.delete '/scores/:id', loadScore, (req, res) ->
     res.locals.score.remove (err) ->
       req.session.messages = if err
-        type: 'error'
-        msg: err.message
+        msg.err(err)
       else
-        type: 'success'
-        msg: 'Notensatz gelöscht.'
+        msg.success 'Notensatz gelöscht.'
       res.redirect '/'
 
   # Edit a score.
