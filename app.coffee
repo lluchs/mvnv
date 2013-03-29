@@ -32,7 +32,6 @@ do ->
   for p in fs.readdirSync dir
     pname = path.basename p, '.mustache'
     partials[pname] = "partials/#{pname}"
-  console.log partials
   app.engine 'mustache', (path, options, fn) ->
     # Set partials.
     options.partials ?= _.clone partials
