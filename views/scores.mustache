@@ -3,6 +3,13 @@
 	{{$content}}
 		<h1>Noten</h1>
 
+        {{! Search form only visible when searching. }}
+        {{#search}}
+            <div class=row>
+                {{>search_form}}
+            </div>
+        {{/search}}
+
 		{{>messages}}
 
 		<nav class=tags>
