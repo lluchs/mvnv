@@ -90,6 +90,16 @@ module.exports = (app) ->
         messages: msg.cat(req.session.messages, msg.err(err))
       delete req.session.messages
 
+  # Delete a rack.
+  app.delete '/racks/:id', loadRack, (req, res) ->
+    res.locals.rack.remove (err) ->
+      req.session.messages = if err
+        msg.err(err)
+      else
+        type: 'success'
+        msg: 'Notenschrank gelöscht.'
+      res.redirect '/racks'
+
   # Edit a rack.
   app.get '/racks/:id/edit', loadRack, (req, res) ->
     rack = res.locals.rack
