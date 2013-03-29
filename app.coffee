@@ -6,7 +6,7 @@ path = require 'path'
 _ = require 'underscore'
 express = require 'express'
 cons = require 'consolidate'
-MongoStore = require 'connect-mongodb'
+MongoStore = require('connect-mongo')(express)
 
 cfg = require './cfg'
 connection = require './db'
