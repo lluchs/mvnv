@@ -9,6 +9,8 @@ module.exports = (app) ->
     Autocompletion.getCompletions Score, 'tags', (err, cmpl) ->
       res.render 'index',
         tags: cmpl
+        messages: req.session.messages
+      delete req.session.messages
 
   app.get '/new', (req, res) ->
     Autocompletion.getCompletions Score, ['publisher', 'tags'], (err, cmpl) ->
