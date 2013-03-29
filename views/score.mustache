@@ -29,6 +29,10 @@
 			</dl>
 
 			<a class="btn" href="/scores/{{_id}}/edit"><i class=icon-edit></i> Bearbeiten</a>
+			<form class="delete-form" action="/scores/{{_id}}" method="POST">
+				<input name="_method" type="hidden" value="DELETE">
+				<button class="btn" type="submit"><i class=icon-trash></i> Löschen</button>
+			</form>
 		{{/score}}
 	{{/content}}
 {{/layout}}
