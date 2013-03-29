@@ -143,6 +143,17 @@ module.exports = (app) ->
     else
       render()
 
+  # Delete a score.
+  app.delete '/scores/:id', loadScore, (req, res) ->
+    res.locals.score.remove (err) ->
+      req.session.messages = if err
+        type: 'error'
+        msg: err.message
+      else
+        type: 'success'
+        msg: 'Notensatz gelöscht.'
+      res.redirect '/'
+
   # Edit a score.
   app.get '/scores/:id/edit', loadScore, (req, res) ->
     Autocompletion.getCompletions Score, ['publisher', 'tags'], (err, cmpl) ->

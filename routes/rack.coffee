@@ -4,6 +4,7 @@ _ = require 'underscore'
 
 Rack = require '../models/Rack'
 Score = require '../models/Score'
+msg = require '../helpers/messages'
 
 module.exports = (app) ->
   # Create a new rack.
@@ -12,15 +13,11 @@ module.exports = (app) ->
     rack.setContents req.body.contents
     rack.save (err) ->
       if err
-        req.session.messages = 
-          type: 'error'
-          msg: err.message
+        req.session.messages = msg.err(err)
         req.session.rack = rack.toObject()
         res.redirect "/racks/new"
       else
-        req.session.messages = 
-          type: 'success'
-          msg: 'Notenschrank eingetragen!'
+        req.session.messages = msg.success 'Notenschrank eingetragen!'
         res.redirect "/racks/#{rack._id}"
 
   # Update a rack.
@@ -31,15 +28,11 @@ module.exports = (app) ->
       rack.setContents req.body.contents
       rack.save (err) ->
         if err
-          req.session.messages = 
-            type: 'error'
-            msg: err.message
+          req.session.messages = msg.err(err)
           req.session.rack = rack.toObject()
           res.redirect "/racks/#{rack._id}/edit"
         else
-          req.session.messages = 
-            type: 'success'
-            msg: 'Notenschrank aktualisiert!'
+          req.session.messages = msg.success 'Notenschrank aktualisiert!'
           res.redirect "/racks/#{rack._id}"
 
   # List racks.
@@ -47,9 +40,8 @@ module.exports = (app) ->
     Rack.find (err, racks) ->
       res.render 'racks',
         racks: racks
-        messages: if err
-          type: 'error'
-          msg: err
+        messages: msg.cat(req.session.messages, msg.err(err))
+      delete req.session.messages
 
   # New Rack.
   app.get '/racks/new', (req, res) ->
@@ -92,14 +84,21 @@ module.exports = (app) ->
           $gte: range.min
           $lte: range.max
     Score.find {$or: ranges}, (err, scores) ->
-      messages = [req.session.messages]
-      messages.push {type: err, msg: err.message} if err
-      messages = _.compact _.flatten messages
       res.render 'rack',
         rack: rack
         scores: scores
-        messages: messages
+        messages: msg.cat(req.session.messages, msg.err(err))
       delete req.session.messages
+
+  # Delete a rack.
+  app.delete '/racks/:id', loadRack, (req, res) ->
+    res.locals.rack.remove (err) ->
+      req.session.messages = if err
+        msg.err(err)
+      else
+        type: 'success'
+        msg: 'Notenschrank gelöscht.'
+      res.redirect '/racks'
 
   # Edit a rack.
   app.get '/racks/:id/edit', loadRack, (req, res) ->

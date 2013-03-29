@@ -14,3 +14,8 @@ body > footer {
 .tags-input {
 	min-width: 206px;
 }
+
+/* Have delete buttons show up inline. */
+.delete-form {
+	display: inline;
+}
