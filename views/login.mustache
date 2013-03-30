@@ -1,0 +1,15 @@
+{{! Login form }}
+{{<layout}}
+	{{$content}}
+		<h1>Login</h1>
+
+		{{>messages}}
+
+		<form action="/login" method="POST" class="input-append">
+			<input type=hidden name=return value="{{return}}">
+			<label>Passwort</label>
+			<input autofocus name=password type=password>
+			<button type=submit class="btn">Login</button>
+		</form>
+	{{/content}}
+{{/layout}}

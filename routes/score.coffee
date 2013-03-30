@@ -7,10 +7,11 @@ Score = require '../models/Score'
 Rack = require '../models/Rack'
 attrs = require('../models/attributes').score
 msg = require '../helpers/messages'
+login = require '../helpers/login'
 
 module.exports = (app) ->
   # Create a new score.
-  app.post '/scores', (req, res) ->
+  app.post '/scores', login.check, (req, res) ->
     score = new Score(_.pick req.body, attrs)
     score.setTags req.body.tags
     score.save (err) ->
@@ -21,7 +22,7 @@ module.exports = (app) ->
       res.redirect '/new'
 
   # Edit a score.
-  app.put '/scores', (req, res) ->
+  app.put '/scores', login.check, (req, res) ->
     id = req.body._id
     Score.findOne {_id: id}, (err, score) ->
       for a in attrs
@@ -133,7 +134,7 @@ module.exports = (app) ->
       render()
 
   # Delete a score.
-  app.delete '/scores/:id', loadScore, (req, res) ->
+  app.delete '/scores/:id', login.check, loadScore, (req, res) ->
     res.locals.score.remove (err) ->
       req.session.messages = if err
         msg.err(err)
@@ -142,7 +143,7 @@ module.exports = (app) ->
       res.redirect '/'
 
   # Edit a score.
-  app.get '/scores/:id/edit', loadScore, (req, res) ->
+  app.get '/scores/:id/edit', login.check, loadScore, (req, res) ->
     Autocompletion.getCompletions Score, ['publisher', 'tags'], (err, cmpl) ->
       score = res.locals.score
       score.method = 'PUT'

@@ -4,11 +4,12 @@ _ = require 'underscore'
 
 Rack = require '../models/Rack'
 Score = require '../models/Score'
+login = require '../helpers/login'
 msg = require '../helpers/messages'
 
 module.exports = (app) ->
   # Create a new rack.
-  app.post '/racks', (req, res) ->
+  app.post '/racks', login.check, (req, res) ->
     rack = new Rack name: req.body.name
     rack.setContents req.body.contents
     rack.save (err) ->
@@ -21,7 +22,7 @@ module.exports = (app) ->
         res.redirect "/racks/#{rack._id}"
 
   # Update a rack.
-  app.put '/racks', (req, res) ->
+  app.put '/racks', login.check, (req, res) ->
     id = req.body._id
     Rack.findOne {_id: id}, (err, rack) ->
       rack.name = req.body.name
@@ -44,7 +45,7 @@ module.exports = (app) ->
       delete req.session.messages
 
   # New Rack.
-  app.get '/racks/new', (req, res) ->
+  app.get '/racks/new', login.check, (req, res) ->
     res.render 'new_rack',
       messages: req.session.messages
       method: 'POST'
@@ -91,7 +92,7 @@ module.exports = (app) ->
       delete req.session.messages
 
   # Delete a rack.
-  app.delete '/racks/:id', loadRack, (req, res) ->
+  app.delete '/racks/:id', login.check, loadRack, (req, res) ->
     res.locals.rack.remove (err) ->
       req.session.messages = if err
         msg.err(err)
@@ -101,7 +102,7 @@ module.exports = (app) ->
       res.redirect '/racks'
 
   # Edit a rack.
-  app.get '/racks/:id/edit', loadRack, (req, res) ->
+  app.get '/racks/:id/edit', login.check, loadRack, (req, res) ->
     rack = res.locals.rack
     rack.method = 'PUT'
     res.render 'edit_rack',
