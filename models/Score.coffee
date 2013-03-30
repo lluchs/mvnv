@@ -33,6 +33,7 @@ schema.methods.setTags = (tags) ->
   unless _.isArray tags
     # Cast to String and convert.
     tags = (''+tags).split(/,/).map (s) -> s.trim()
+  tags.sort()
   @tags = tags
 
 # Get the tags concatenated to a String.
