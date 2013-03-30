@@ -19,3 +19,8 @@ body > footer {
 .delete-form {
 	display: inline;
 }
+
+/* Indicate sortable table heads as clickable. */
+th[data-sort] {
+	cursor: pointer;
+}

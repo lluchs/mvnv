@@ -1,15 +1,19 @@
 {{! Lists scores in a table. }}
 <table class="scores table table-hover">
-	<tr>
-		<th>ID</th>
-		<th>Titel</th>
-		<th>Komponist</th>
-	</tr>
-	{{#scores}}
+	<thead>
 		<tr>
-			<td><a href="/racks/by/score/{{id}}">{{id}}</a></td>
-			<td><a href="/scores/{{_id}}"><b>{{title}}</b></a></td>
-			<td>{{composer}}</td>
+			<th data-sort="id">ID</th>
+			<th data-sort="string" class="default">Titel</th>
+			<th data-sort="string">Komponist</th>
 		</tr>
-	{{/scores}}
+	</thead>
+	<tbody>
+		{{#scores}}
+			<tr>
+				<td><a href="/racks/by/score/{{id}}">{{id}}</a></td>
+				<td><a href="/scores/{{_id}}"><b>{{title}}</b></a></td>
+				<td>{{composer}}</td>
+			</tr>
+		{{/scores}}
+	</tbody>
 </table>
