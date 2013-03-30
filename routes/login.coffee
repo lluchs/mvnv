@@ -18,15 +18,20 @@ module.exports = (app) ->
     else
       res.render 'login',
         messages: req.session.messages
+        return: req.query.return
       delete req.session.messages
 
   app.post '/login', (req, res) ->
     if cfg.get('password') is sha1sum(req.body.password)
       req.session.login = true
-      req.session.messages = msg.success 'Willkommen zurück.'
       # The cookie is used to let the client JS know.
       res.cookie 'login', '1'
-      res.redirect '/'
+      # Try to return to the previous page.
+      if req.body.return
+        res.redirect req.body.return
+      else
+        req.session.messages = msg.success 'Willkommen zurück.'
+        res.redirect '/'
     else
       res.render 'login',
         messages:

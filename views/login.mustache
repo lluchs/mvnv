@@ -6,6 +6,7 @@
 		{{>messages}}
 
 		<form action="/login" method="POST" class="input-append">
+			<input type=hidden name=return value="{{return}}">
 			<label>Passwort</label>
 			<input autofocus name=password type=password>
 			<button type=submit class="btn">Login</button>
