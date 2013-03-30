@@ -19,11 +19,16 @@
 					{{^id}}<i class=muted>?</i>{{/id}}
 				</dd>
 				<dt>Komponist</dt>
-				<dd>{{composer}}</dd>
+				<dd>
+					<a href="/scores/search?q={{composer}}">{{composer}}</a>
+				</dd>
 				<dt>Jahr</dt>
 				<dd>{{year}}{{^year}}<i class=muted>?</i>{{/year}}</dd>
 				<dt>Verlag</dt>
-				<dd>{{publisher}}{{^publisher}}<i class=muted>?</i>{{/publisher}}</dd>
+				<dd>
+					<a href="/scores/search?q={{publisher}}">{{publisher}}</a>
+					{{^publisher}}<i class=muted>?</i>{{/publisher}}
+				</dd>
 				<dt>Tags</dt>
 				<dd>
 					{{#tags}}
