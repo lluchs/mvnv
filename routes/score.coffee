@@ -94,15 +94,15 @@ module.exports = (app) ->
 
     search.exec (err, scores) ->
       if err or scores.length is 0
-        msg = 'Nichts gefunden.'
+        info = 'Nichts gefunden.'
       else
-        msg = "#{scores.length} Resultat#{if scores.length isnt 1 then 'e' else ''}:"
+        info = "#{scores.length} Resultat#{if scores.length isnt 1 then 'e' else ''}:"
       res.render 'scores',
         search: req.query.q
         scores: scores
         messages:
           type: 'info'
-          msg: msg
+          msg: info
 
   # Middleware for getting the given score.
   loadScore = (req, res, next) ->
