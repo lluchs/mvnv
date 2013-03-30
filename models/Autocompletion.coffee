@@ -21,6 +21,8 @@ getCacheField = (Model, field) -> "#{Model.modelName}|#{field}"
 schema.statics.buildCache = (Model, field) ->
   Model.distinct field, {}, (err, result) =>
     return if err
+    # Sort the completions, useful for tags.
+    result.sort()
     af = getCacheField(Model, field)
     # Insert into collection.
     @findOneAndUpdate
