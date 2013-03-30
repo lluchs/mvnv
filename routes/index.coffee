@@ -2,6 +2,7 @@
 
 Autocompletion = require '../models/Autocompletion'
 Score = require '../models/Score'
+login = require '../helpers/login'
 
 module.exports = (app) ->
   app.get '/', (req, res) ->
@@ -12,7 +13,7 @@ module.exports = (app) ->
         messages: req.session.messages
       delete req.session.messages
 
-  app.get '/new', (req, res) ->
+  app.get '/new', login.check, (req, res) ->
     Autocompletion.getCompletions Score, ['publisher', 'tags'], (err, cmpl) ->
       res.render 'new',
         messages: req.session.messages
