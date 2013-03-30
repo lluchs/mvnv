@@ -27,4 +27,6 @@ $(function() {
     var arrow = data.direction === dir.ASC ? "&uarr;" : "&darr;";
     th.eq(data.column).append('<span class="arrow">' + arrow +'</span>');
   });
+  // Default sorting on load.
+  table.find('.default').click();
 });
