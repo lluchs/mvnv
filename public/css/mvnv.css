@@ -1,4 +1,10 @@
 
+/* Login/Logout buttons */
+nav .logout {
+	display: inline;
+}
+
+
 body > nav + section {
 	margin-top: 60px;
 }

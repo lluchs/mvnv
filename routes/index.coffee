@@ -22,5 +22,6 @@ module.exports = (app) ->
       delete req.session.messages
 
   # Include subroutes
+  require('./login')(app)
   require('./score')(app)
   require('./rack')(app)
