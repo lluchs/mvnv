@@ -1,7 +1,8 @@
 /* Sortable scores table */
 
 $(function() {
-  $('table.scores').stupidtable({
+  table = $('table.scores')
+  table.stupidtable({
     // IDs might be empty, which parses to NaN.
     id: function(a, b) {
       a = parseInt(a, 10);
@@ -17,5 +18,13 @@ $(function() {
       // Neither a nor b are NaN.
       return a - b;
     }
+  });
+  table.on("aftertablesort", function(event, data) {
+    var th = $(this).find("th");
+    th.find(".arrow").remove();
+    var dir = $.fn.stupidtable.dir;
+
+    var arrow = data.direction === dir.ASC ? "&uarr;" : "&darr;";
+    th.eq(data.column).append('<span class="arrow">' + arrow +'</span>');
   });
 });
