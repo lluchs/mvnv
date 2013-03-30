@@ -87,12 +87,11 @@ module.exports = (app) ->
     query = (s.replace(/[\x00-\x2F,\x3A-\x40,\x5B-\x60,\x7B-\x80]+/g, '') for s in query)
 
     # Search for all scores containing all of the given words.
-    search = Score.find()
-    for q in query
+    $and = for q in query
       regex = new RegExp q, 'i'
-      search.find {$or: [{title: regex}, {composer: regex}, {publisher: regex}]}
+      {$or: [{title: regex}, {composer: regex}, {publisher: regex}]}
 
-    search.exec (err, scores) ->
+    Score.find {$and}, (err, scores) ->
       if err or scores.length is 0
         info = 'Nichts gefunden.'
       else
