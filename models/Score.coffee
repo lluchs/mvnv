@@ -16,7 +16,6 @@ schema = new mongoose.Schema
     required: true
   composer: 
     type: String
-    required: true
   year: Number
   publisher: String
   tags:
