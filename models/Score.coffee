@@ -22,6 +22,12 @@ schema = new mongoose.Schema
     type: [String]
     index: true
 
+schema.pre 'save', (next) ->
+  # Remove null ids to make the sparse and unique index work.
+  if @id is null
+    @id = undefined
+  next()
+
 schema.post 'save', ->
   # Update autocompletion cache.
   Autocompletion.buildCache Score, 'publisher'
