@@ -17,6 +17,7 @@ System.config({
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.7",
+    "lodash": "npm:lodash@4.16.1",
     "pouchdb": "npm:pouchdb@6.0.5",
     "react": "npm:react@15.3.2",
     "react-dom": "npm:react-dom@15.3.2",
@@ -165,7 +166,7 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:async@2.0.1": {
-      "lodash": "npm:lodash@4.16.0",
+      "lodash": "npm:lodash@4.16.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:aws-sign2@0.6.0": {
