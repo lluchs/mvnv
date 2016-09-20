@@ -12,6 +12,7 @@
   },
   "jspm": {
     "dependencies": {
+      "pouchdb": "npm:pouchdb@^6.0.5",
       "react": "npm:react@^15.3.2",
       "react-dom": "npm:react-dom@^15.3.2"
     },
