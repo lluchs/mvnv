@@ -1,0 +1,15 @@
+header > div {
+	background: #2d3e50;
+	padding: 0.5em;
+}
+
+header .pure-menu-heading {
+	color: white;
+	font-weight: 400;
+	font-size: 120%;
+}
+
+main {
+	width: 95%;
+	margin: auto;
+}
