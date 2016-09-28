@@ -71,3 +71,9 @@ main {
 	vertical-align: middle;
 	min-width: 216px;
 }
+
+@media (max-width: 600px) {
+	.composer-column {
+		display: none;
+	}
+}
