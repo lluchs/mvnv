@@ -14,6 +14,22 @@ main {
 	margin: auto;
 }
 
+.search-form {
+	display: flex;
+	position: relative;
+}
+
+.search-form input {
+	flex: 1;
+}
+
+.search-form button {
+	position: absolute;
+	right: 10px;
+	top: 0.25em;
+	border-radius: 20px;
+}
+
 .tag-list {
 	list-style-type: none;
 }
@@ -30,4 +46,10 @@ main {
 .tag-list .selected {
 	border: 1px solid red;
 	font-weight: bold;
+}
+
+.pure-button.emoji-button {
+	padding: 0;
+	font-size: 130%;
+	width: 1.2em;
 }
