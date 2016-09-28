@@ -23,6 +23,7 @@ System.config({
     "purecss": "npm:purecss@0.6.0",
     "react": "npm:react@15.3.2",
     "react-dom": "npm:react-dom@15.3.2",
+    "react-select": "npm:react-select@1.0.0-rc.2",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },
@@ -44,7 +45,7 @@ System.config({
     "github:jspm/nodelibs-http@1.7.1": {
       "Base64": "npm:Base64@0.2.1",
       "events": "github:jspm/nodelibs-events@0.1.1",
-      "inherits": "npm:inherits@2.0.3",
+      "inherits": "npm:inherits@2.0.1",
       "stream": "github:jspm/nodelibs-stream@0.1.0",
       "url": "github:jspm/nodelibs-url@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
@@ -127,7 +128,7 @@ System.config({
       "es6-symbol": "npm:es6-symbol@3.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:asap@2.0.4": {
+    "npm:asap@2.0.5": {
       "domain": "github:jspm/nodelibs-domain@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
@@ -476,7 +477,7 @@ System.config({
     "npm:fast-future@1.0.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:fbjs@0.8.4": {
+    "npm:fbjs@0.8.5": {
       "core-js": "npm:core-js@1.2.7",
       "immutable": "npm:immutable@3.8.1",
       "isomorphic-fetch": "npm:isomorphic-fetch@2.2.1",
@@ -703,7 +704,7 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:isomorphic-fetch@2.2.1": {
-      "node-fetch": "npm:node-fetch@1.6.1",
+      "node-fetch": "npm:node-fetch@1.6.3",
       "whatwg-fetch": "npm:whatwg-fetch@1.0.0"
     },
     "npm:isstream@0.1.2": {
@@ -827,7 +828,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:node-fetch@1.6.1": {
+    "npm:node-fetch@1.6.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "encoding": "npm:encoding@0.1.12",
       "http": "github:jspm/nodelibs-http@1.7.1",
@@ -1043,7 +1044,7 @@ System.config({
       "vm": "github:jspm/nodelibs-vm@0.1.0"
     },
     "npm:promise@7.1.1": {
-      "asap": "npm:asap@2.0.4",
+      "asap": "npm:asap@2.0.5",
       "fs": "github:jspm/nodelibs-fs@0.1.2"
     },
     "npm:public-encrypt@4.0.0": {
@@ -1085,8 +1086,17 @@ System.config({
     "npm:react-dom@15.3.2": {
       "react": "npm:react@15.3.2"
     },
+    "npm:react-input-autosize@1.1.0": {
+      "react": "npm:react@15.3.2"
+    },
+    "npm:react-select@1.0.0-rc.2": {
+      "classnames": "npm:classnames@2.2.5",
+      "react": "npm:react@15.3.2",
+      "react-dom": "npm:react-dom@15.3.2",
+      "react-input-autosize": "npm:react-input-autosize@1.1.0"
+    },
     "npm:react@15.3.2": {
-      "fbjs": "npm:fbjs@0.8.4",
+      "fbjs": "npm:fbjs@0.8.5",
       "loose-envify": "npm:loose-envify@1.2.0",
       "object-assign": "npm:object-assign@4.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -1114,7 +1124,7 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "core-util-is": "npm:core-util-is@1.0.2",
       "events": "github:jspm/nodelibs-events@0.1.1",
-      "inherits": "npm:inherits@2.0.3",
+      "inherits": "npm:inherits@2.0.1",
       "isarray": "npm:isarray@0.0.1",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "stream-browserify": "npm:stream-browserify@1.0.0",
@@ -1124,7 +1134,7 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "core-util-is": "npm:core-util-is@1.0.2",
       "events": "github:jspm/nodelibs-events@0.1.1",
-      "inherits": "npm:inherits@2.0.3",
+      "inherits": "npm:inherits@2.0.1",
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "process-nextick-args": "npm:process-nextick-args@1.0.7",
@@ -1225,8 +1235,8 @@ System.config({
     },
     "npm:stream-browserify@1.0.0": {
       "events": "github:jspm/nodelibs-events@0.1.1",
-      "inherits": "npm:inherits@2.0.3",
-      "readable-stream": "npm:readable-stream@1.0.33"
+      "inherits": "npm:inherits@2.0.1",
+      "readable-stream": "npm:readable-stream@1.1.14"
     },
     "npm:string-width@1.0.2": {
       "code-point-at": "npm:code-point-at@1.0.0",

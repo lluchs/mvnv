@@ -59,3 +59,15 @@ main {
 	font-size: 130%;
 	width: 1.2em;
 }
+
+/* Fix react-select styles with pure */
+.pure-form .Select-input > input[role=combobox] {
+	border: none;
+	box-shadow: none;
+}
+
+.pure-form-aligned .Select {
+	display: inline-block;
+	vertical-align: middle;
+	min-width: 216px;
+}
