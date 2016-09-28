@@ -13,3 +13,21 @@ main {
 	width: 95%;
 	margin: auto;
 }
+
+.tag-list {
+	list-style-type: none;
+}
+
+.tag-list li {
+	display: inline-block;
+	margin-right: 1em;
+	padding: 0.1em 0.3em;
+	cursor: pointer;
+	border: 1px dotted #999;
+	border-radius: 5px;
+}
+
+.tag-list .selected {
+	border: 1px solid red;
+	font-weight: bold;
+}
