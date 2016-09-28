@@ -32,6 +32,12 @@ main {
 
 .tag-list {
 	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.tag-list:not(:last-child) {
+	margin-bottom: 1em;
 }
 
 .tag-list li {
