@@ -23,6 +23,7 @@ System.config({
     "purecss": "npm:purecss@0.6.0",
     "react": "npm:react@15.3.2",
     "react-dom": "npm:react-dom@15.3.2",
+    "react-router": "npm:react-router@2.8.1",
     "react-select": "npm:react-select@1.0.0-rc.2",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
@@ -636,6 +637,13 @@ System.config({
       "systemjs-json": "github:systemjs/plugin-json@0.1.2",
       "url": "github:jspm/nodelibs-url@0.1.0"
     },
+    "npm:history@2.1.2": {
+      "deep-equal": "npm:deep-equal@1.0.1",
+      "invariant": "npm:invariant@2.2.1",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "query-string": "npm:query-string@3.0.3",
+      "warning": "npm:warning@2.1.0"
+    },
     "npm:hoek@2.16.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
@@ -686,6 +694,10 @@ System.config({
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:ini@1.3.4": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:invariant@2.2.1": {
+      "loose-envify": "npm:loose-envify@1.2.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:is-fullwidth-code-point@1.0.0": {
@@ -1069,6 +1081,9 @@ System.config({
     "npm:purecss@0.6.0": {
       "css": "github:systemjs/plugin-css@0.1.29"
     },
+    "npm:query-string@3.0.3": {
+      "strict-uri-encode": "npm:strict-uri-encode@1.1.0"
+    },
     "npm:randombytes@2.0.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
@@ -1088,6 +1103,15 @@ System.config({
     },
     "npm:react-input-autosize@1.1.0": {
       "react": "npm:react@15.3.2"
+    },
+    "npm:react-router@2.8.1": {
+      "history": "npm:history@2.1.2",
+      "hoist-non-react-statics": "npm:hoist-non-react-statics@1.2.0",
+      "invariant": "npm:invariant@2.2.1",
+      "loose-envify": "npm:loose-envify@1.2.0",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "react": "npm:react@15.3.2",
+      "warning": "npm:warning@3.0.0"
     },
     "npm:react-select@1.0.0-rc.2": {
       "classnames": "npm:classnames@2.2.5",
@@ -1358,6 +1382,14 @@ System.config({
     },
     "npm:vm-browserify@0.0.4": {
       "indexof": "npm:indexof@0.0.1"
+    },
+    "npm:warning@2.1.0": {
+      "loose-envify": "npm:loose-envify@1.2.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:warning@3.0.0": {
+      "loose-envify": "npm:loose-envify@1.2.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:which@1.2.11": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
