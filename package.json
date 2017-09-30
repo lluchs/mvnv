@@ -8,13 +8,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jspm": "^0.16.45"
+    "jspm": "^0.16.53"
   },
   "jspm": {
     "dependencies": {
       "css": "github:systemjs/plugin-css@^0.1.29",
       "lodash": "npm:lodash@^4.16.1",
-      "pouchdb": "npm:pouchdb@^6.0.5",
+      "pouchdb": "npm:pouchdb@^6.3.4",
       "purecss": "npm:purecss@^0.6.0",
       "react": "npm:react@^15.3.2",
       "react-dom": "npm:react-dom@^15.3.2",
