@@ -1,0 +1,10 @@
+{
+  "_id": "_design/tags",
+  "views": {
+    "autocompletion": {
+      "reduce": "_count",
+      "map": "function (doc) {\n  if (doc.tags)\n    for (var i = 0; i < doc.tags.length; i++)\n      emit(doc.tags[i], 1)\n}\n"
+    }
+  },
+  "language": "javascript"
+}

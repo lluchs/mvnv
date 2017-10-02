@@ -1,0 +1,5 @@
+{
+  "_id": "_design/_auth",
+  "language": "javascript",
+  "validate_doc_update": "function(newDoc, oldDoc, userCtx, secObj) {\n  if (userCtx.roles.indexOf('mvnv') === -1)\n    throw {unauthorized: 'not authorized, please log in'}\n}\n"
+}
